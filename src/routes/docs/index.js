@@ -5,7 +5,7 @@ const router = express.Router();
 
 const devRoutes = [
   {
-    path: '/docs',
+    path: '/',
     route: docsRoute,
   },
 ];
