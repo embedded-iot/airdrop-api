@@ -30,9 +30,9 @@ jobs:
     - name: SSH Remote Commands
       uses: appleboy/ssh-action@v0.1.2
       with:
-        key: ${{secrets.DEV_PRIVATE_KEY}}
-        host: ${{secrets.DEV_HOST}}
-        username: ${{secrets.DEV_USERNAME}}
+        key: ${{secrets.SSH_KEY}}
+        host: ${{secrets.SSH_HOST}}
+        username: ${{secrets.SSH_USERNAME}}
         script: |
           pm2 delete all
           cd /var/www/html/api.airdrop.mmo4dev.pro/airdrop-api
