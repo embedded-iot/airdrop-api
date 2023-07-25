@@ -10,7 +10,10 @@ const config = require('./config/config');
 const morgan = require('./config/morgan');
 const { jwtStrategy } = require('./config/passport');
 const { authLimiter } = require('./middlewares/rateLimiter');
-const routes = require('./routes/v1');
+const docsRoutes = require('./routes/docs');
+const publicRoutes = require('./routes/public');
+const managerRoutes = require('./routes/guest');
+const adminRoutes = require('./routes/admin');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
 
@@ -37,8 +40,27 @@ app.use(mongoSanitize());
 // gzip compression
 app.use(compression());
 
+const allowlist = [config.domain.url];
+
+const corsOptionsDelegate = (req, callback) => {
+  let corsOptions;
+
+  const isDomainAllowed = allowlist.indexOf(req.header('Origin')) !== -1;
+
+  if (isDomainAllowed) {
+    corsOptions = {
+      origin: true,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+      credentials: true,
+    };
+  } else {
+    corsOptions = { origin: false };
+  }
+  callback(null, corsOptions);
+};
+
 // enable cors
-app.use(cors());
+app.use(cors(corsOptionsDelegate));
 app.options('*', cors());
 
 // jwt authentication
@@ -47,11 +69,14 @@ passport.use('jwt', jwtStrategy);
 
 // limit repeated failed requests to auth endpoints
 if (config.env === 'production') {
-  app.use('/v1/auth', authLimiter);
+  app.use('/api/auth', authLimiter);
 }
 
 // v1 api routes
-app.use('/v1', routes);
+app.use('/api', docsRoutes);
+app.use('/api/public', publicRoutes);
+app.use('/api/guest', managerRoutes);
+app.use('/api/admin', adminRoutes);
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {

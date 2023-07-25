@@ -5,20 +5,199 @@ components:
       properties:
         id:
           type: string
+        username:
+          type: string
+        fullName:
+          type: string
+        avatar:
+          type: string
         email:
           type: string
           format: email
-        name:
+        phone:
           type: string
+        state:
+          type: string
+          enum: [Activated, Blocked]
+        lastLogin:
+          type: string
+          format: date-time
         role:
           type: string
-          enum: [user, admin]
+          enum: [USER, ADMIN]
       example:
         id: 5ebac534954b54139806c112
-        email: fake@example.com
-        name: fake name
-        role: user
-
+        username: username
+        fullName: Full name
+        avatar: ''
+        email: user@gmail.com
+        phone: 0123456789
+        state: Activated
+        role: USER
+        lastLogin: null
+#    Project:
+#      type: object
+#      properties:
+#        id:
+#          type: string
+#        name:
+#          type: string
+#        description:
+#          type: string
+#        user:
+#          type: string
+#      example:
+#        id: 32bac534954b54139806c112
+#        name: Project name
+#        description: Project description
+#        user: 32bac534954b54139806c112
+#    GatewaySetting:
+#      type: object
+#      properties:
+#        refreshDataAfterTime:
+#          type: number
+#      example:
+#        refreshDataAfterTime: 12000
+#    Gateway:
+#      type: object
+#      properties:
+#        id:
+#          type: string
+#        gatewayId:
+#          type: string
+#        name:
+#          type: string
+#        description:
+#          type: string
+#        project:
+#          type: string
+#        state:
+#          type: string
+#          enum: [Online, Offline]
+#        updatedStateAt:
+#          type: string
+#          format: date-time
+#        settings:
+#          type: object
+#        devicesCount:
+#          type: number
+#      example:
+#        id: 32bac534954b54139806c112
+#        gatewayId: Gateway id
+#        name: Gateway name
+#        project: 32bac534954b54139806c112
+#        state: Online
+#        updatedStateAt: 2023-02-13T14:51:45.018+00:00
+#        settings: {}
+#        devicesCount: 0
+#    Device:
+#      type: object
+#      properties:
+#        id:
+#          type: string
+#        type:
+#          type: string
+#          enum: [LOGGER, INVERTER, SENSOR]
+#        deviceId:
+#          type: number
+#        name:
+#          type: string
+#        ipAddress:
+#          type: string
+#        port:
+#          type: number
+#        startDataAddress:
+#          type: number
+#        endDataAddress:
+#          type: number
+#        state:
+#          type: string
+#          enum: [Online, Offline]
+#        gateway:
+#          type: string
+#      example:
+#        id: 32bac534954b54139806c112
+#        type: INVERTER
+#        deviceId: 1
+#        name: Device name
+#        ipAddress: 192.168.0.100
+#        port: 502
+#        startDataAddress: 8000
+#        endDataAddress: 9000
+#        state: Online
+#        gateway: 32bac534954b54139806c112
+#    DeviceLog:
+#      type: object
+#      properties:
+#        id:
+#          type: string
+#        device:
+#          type: string
+#        list:
+#          type: array
+#      example:
+#        id: 45bac534954b54139806c112
+#        device: 45bac534954b54139806c112
+#        list: [
+#          {
+#            "name": "SN",
+#            "address": [4990, 4999],
+#            "dataType": "UTF-8",
+#            "value": "SN123456",
+#            "unit": ""
+#          }
+#        ]
+#    Fault:
+#      type: object
+#      properties:
+#        id:
+#          type: string
+#        device:
+#          type: string
+#        category:
+#          type: string
+#          enum: [Systems, Additional]
+#        type:
+#          type: string
+#          enum: [Fault, Alarm]
+#        description:
+#          type: string
+#        reason:
+#          type: string
+#        suggest:
+#          type: string
+#      example:
+#        id: 45bac534954b54139806c112
+#        device: 45bac534954b54139806c112
+#        category: Systems
+#        type: Fault
+#        description: This is description
+#        reason: This is reason
+#        suggest: This is suggest
+#    ActivityLog:
+#      type: object
+#      properties:
+#        id:
+#          type: string
+#        category:
+#          type: string
+#          enum: [Gateway, Device, DeviceLog, Fault]
+#        type:
+#          type: string
+#          enum: [Success, Info, Warning, Error]
+#        description:
+#          type: string
+#        details:
+#          type: string
+#        user:
+#          type: string
+#      example:
+#        id: 45bac534954b54139806c112
+#        gateway: 45bac534954b54139806c112
+#        category: Gateway
+#        type: Success
+#        description: Gateway not found
+#        details: 45bac534954b54139806c112
     Token:
       type: object
       properties:
@@ -48,6 +227,15 @@ components:
           type: string
 
   responses:
+    DuplicateName:
+      description: Name already taken
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Name already taken
     DuplicateEmail:
       description: Email already taken
       content:
