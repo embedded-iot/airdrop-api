@@ -37,4 +37,4 @@ jobs:
           cd /var/www/html/api.airdrop.mmo4dev.pro/airdrop-api
           git pull
           npm install
-          pm2 restart airdrop-app
+          pm2 restart airdrop-api
