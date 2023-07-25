@@ -35,6 +35,7 @@ jobs:
         key: ${{secrets.SSH_KEY}}
         script: |
           cd /var/www/html/api.airdrop.mmo4dev.pro/airdrop-api
+          git checkout dev
           git pull
           npm install
           pm2 restart airdrop-api
