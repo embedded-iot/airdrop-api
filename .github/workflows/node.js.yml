@@ -34,7 +34,6 @@ jobs:
         username: ${{secrets.SSH_USERNAME}}
         key: ${{secrets.SSH_KEY}}
         script: |
-          pm2 delete all
           cd /var/www/html/api.airdrop.mmo4dev.pro/airdrop-api
           git pull
           npm install
