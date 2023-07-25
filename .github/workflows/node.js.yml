@@ -28,7 +28,7 @@ jobs:
         cache: 'npm'
     - run: npm install
     - name: SSH Remote Commands
-      uses: appleboy/ssh-action@v0.1.2
+      uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{secrets.SSH_HOST}}
         username: ${{secrets.SSH_USERNAME}}
