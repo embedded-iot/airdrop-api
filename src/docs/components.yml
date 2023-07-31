@@ -5,11 +5,7 @@ components:
       properties:
         id:
           type: string
-        username:
-          type: string
-        fullName:
-          type: string
-        avatar:
+        name:
           type: string
         email:
           type: string
@@ -28,8 +24,7 @@ components:
       example:
         id: 5ebac534954b54139806c112
         username: username
-        fullName: Full name
-        avatar: ''
+        name: Full name
         email: user@gmail.com
         phone: 0123456789
         state: Activated

@@ -4,9 +4,7 @@ const { ROLE_VALUES } = require('../config/roles');
 
 const createUser = {
   body: Joi.object().keys({
-    username: Joi.string().required(),
-    fullName: Joi.string(),
-    avatar: Joi.string(),
+    name: Joi.string(),
     email: Joi.string().required().email(),
     phone: Joi.string(),
     state: Joi.string(),
@@ -37,15 +35,12 @@ const updateUser = {
   }),
   body: Joi.object()
     .keys({
-      username: Joi.string(),
-      fullName: Joi.string(),
-      avatar: Joi.string(),
+      name: Joi.string(),
       email: Joi.string().email(),
       phone: Joi.string(),
       state: Joi.string(),
       password: Joi.string().custom(password),
       role: Joi.string().valid(ROLE_VALUES.USER, ROLE_VALUES.USER),
-      name: Joi.string(),
     })
     .min(1),
 };

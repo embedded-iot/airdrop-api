@@ -1,8 +1,8 @@
 const STATE_VALUES = {
-  ACTIVATED: 'Activated',
-  BLOCKED: 'Blocked',
-  ONLINE: 'Online',
-  OFFLINE: 'Offline',
+  ACTIVATED: 'ACTIVATED',
+  BLOCKED: 'BLOCKED ',
+  ONLINE: 'ONLINE',
+  OFFLINE: 'OFFLINE',
 };
 
 const userStates = [STATE_VALUES.ACTIVATED, STATE_VALUES.BLOCKED];
