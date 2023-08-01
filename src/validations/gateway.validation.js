@@ -16,8 +16,8 @@ const getGateways = {
     keyword: Joi.string(),
     description: Joi.string(),
     sortBy: Joi.string(),
-    limit: Joi.number().integer(),
-    page: Joi.number().integer(),
+    pageSize: Joi.number().integer(),
+    pageNum: Joi.number().integer(),
   }),
 };
 
@@ -53,8 +53,8 @@ const getGatewaysManagement = {
     keyword: Joi.string(),
     description: Joi.string(),
     sortBy: Joi.string(),
-    limit: Joi.number().integer(),
-    page: Joi.number().integer(),
+    pageSize: Joi.number().integer(),
+    pageNum: Joi.number().integer(),
   }),
 };
 

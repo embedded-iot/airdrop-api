@@ -21,7 +21,7 @@ const createActivityLog = catchAsync(async (req, res) => {
 
 const getActivityLogs = catchAsync(async (req, res) => {
   const { gatewayId } = pick(req.query, ['gatewayId']);
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const options = pick(req.query, ['sortBy', 'pageSize', 'pageNum']);
   options.sortBy = options.sortBy || 'updatedAt:desc';
   const projects = await projectService.getProjectsByOption({ user: req.user._id });
   const projectIds = await projects.map((project) => project._id);
@@ -77,7 +77,7 @@ const clearData = async (filter) => {
 
 const getActivityLogsManagement = catchAsync(async (req, res) => {
   const { gatewayId } = pick(req.query, ['gatewayId']);
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const options = pick(req.query, ['sortBy', 'pageSize', 'pageNum']);
   options.sortBy = options.sortBy || 'updatedAt:desc';
   const projects = await projectService.getProjectsByOption({});
   const projectIds = await projects.map((project) => project._id);

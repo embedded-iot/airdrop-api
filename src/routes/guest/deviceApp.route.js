@@ -85,11 +85,11 @@ module.exports = router;
  *              schema:
  *                type: object
  *                properties:
- *                  results:
+ *                  content:
  *                    type: array
  *                    items:
  *                      $ref: '#/components/schemas/Device'
- *                  totalResults:
+ *                  totalElement:
  *                    type: integer
  *                    example: 1
  *        "401":

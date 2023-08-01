@@ -17,8 +17,8 @@ const createFault = async (faultBody) => {
  * @param {Object} filter - Mongo filter
  * @param {Object} options - Query options
  * @param {string} [options.sortBy] - Sort option in the format: sortField:(desc|asc)
- * @param {number} [options.limit] - Maximum number of results per page (default = 10)
- * @param {number} [options.page] - Current page (default = 1)
+ * @param {number} [options.pageSize] - Maximum number of content per page (default = 10)
+ * @param {number} [options.pageNum] - Current page (default = 1)
  * @returns {Promise<QueryResult>}
  */
 const queryFaults = async (filter, options) => {
@@ -71,7 +71,7 @@ const deleteFaultById = async (faultId) => {
  * @returns {Promise<Statistic>}
  */
 const getLatestFaults = async (filter = {}) => {
-  const result = await queryFaults(filter, { sortBy: 'updatedAt:desc', limit: 100 });
+  const result = await queryFaults(filter, { sortBy: 'updatedAt:desc', pageSize: 100 });
   return result;
 };
 

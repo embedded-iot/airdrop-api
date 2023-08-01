@@ -18,8 +18,8 @@ const getFaults = {
     gatewayId: Joi.string(),
     deviceId: Joi.number(),
     sortBy: Joi.string(),
-    limit: Joi.number().integer(),
-    page: Joi.number().integer(),
+    pageSize: Joi.number().integer(),
+    pageNum: Joi.number().integer(),
   }),
 };
 
@@ -63,8 +63,8 @@ const getFaultsManagement = {
     gatewayId: Joi.string(),
     deviceId: Joi.number(),
     sortBy: Joi.string(),
-    limit: Joi.number().integer(),
-    page: Joi.number().integer(),
+    pageSize: Joi.number().integer(),
+    pageNum: Joi.number().integer(),
   }),
 };
 

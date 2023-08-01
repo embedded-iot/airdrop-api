@@ -20,8 +20,8 @@ const createStatistic = async (statisticBody) => {
  * @param {Object} filter - Mongo filter
  * @param {Object} options - Query options
  * @param {string} [options.sortBy] - Sort option in the format: sortField:(desc|asc)
- * @param {number} [options.limit] - Maximum number of results per page (default = 10)
- * @param {number} [options.page] - Current page (default = 1)
+ * @param {number} [options.pageSize] - Maximum number of content per page (default = 10)
+ * @param {number} [options.pageNum] - Current page (default = 1)
  * @returns {Promise<QueryResult>}
  */
 const queryStatistics = async (filter, options) => {
@@ -74,8 +74,8 @@ const deleteStatisticById = async (statisticId) => {
  * @returns {Promise<Statistic>}
  */
 const getLatestStatistic = async (filter = {}) => {
-  const result = await queryStatistics(filter, { sortBy: 'updatedAt:desc', limit: 1 });
-  const statistic = result.results.length ? result.results[0] : {};
+  const result = await queryStatistics(filter, { sortBy: 'updatedAt:desc', pageSize: 1 });
+  const statistic = result.content.length ? result.content[0] : {};
   return statistic;
 };
 

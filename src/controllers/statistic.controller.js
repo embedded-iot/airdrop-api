@@ -7,7 +7,7 @@ const { statisticService, gatewayService, deviceService } = require('../services
 const transformStatisticBody = async (statistic = {}) => {
   if (statistic.statisticData && statistic.statisticData.length === 3) {
     const runTimeStatistics = statistic.statisticData[2];
-    const resultDevices = await deviceService.queryDevices({}, { limit: 100 });
+    const resultDevices = await deviceService.queryDevices({}, { pageSize: 100 });
     runTimeStatistics.list = runTimeStatistics.list.map((deviceStatistic) => {
       let deviceStatus = '';
       if (deviceStatistic.dev_state === '65534') {
@@ -19,7 +19,7 @@ const transformStatisticBody = async (statistic = {}) => {
       } else {
         deviceStatus = 'Shutdown';
       }
-      const selectedDevice = resultDevices.results.find((device) => device.deviceData.dev_name === deviceStatistic.dev_name);
+      const selectedDevice = resultDevices.content.find((device) => device.deviceData.dev_name === deviceStatistic.dev_name);
       return {
         ...deviceStatistic,
         deviceStatus,
@@ -49,7 +49,7 @@ const createStatistic = catchAsync(async (req, res) => {
 const getStatistics = catchAsync(async (req, res) => {
   const filter = {};
   const { gatewayId, from, to } = pick(req.query, ['gatewayId', 'from', 'to']);
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const options = pick(req.query, ['sortBy', 'pageSize', 'pageNum']);
   if (gatewayId) {
     const gateway = await gatewayService.getGatewayByOption({ gatewayId });
     if (!gateway) {

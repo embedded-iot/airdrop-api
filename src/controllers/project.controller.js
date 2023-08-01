@@ -21,7 +21,7 @@ const getProjects = catchAsync(async (req, res) => {
     ...searchOptions,
     user: req.user._id,
   };
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const options = pick(req.query, ['sortBy', 'pageSize', 'pageNum']);
   const result = await projectService.queryProjects(filterByUserReq, options);
   res.send(result);
 });
@@ -65,7 +65,7 @@ const getProjectsManagement = catchAsync(async (req, res) => {
   const filterByUserReq = {
     ...searchOptions,
   };
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const options = pick(req.query, ['sortBy', 'pageSize', 'pageNum']);
   const result = await projectService.queryProjects(filterByUserReq, options);
   res.send(result);
 });
