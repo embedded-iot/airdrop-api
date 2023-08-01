@@ -54,8 +54,6 @@ module.exports = router;
  *                  type: string
  *                  format: email
  *                  description: must be unique
- *                phone:
- *                  type: string
  *                state:
  *                  type: string
  *                password:
@@ -69,8 +67,7 @@ module.exports = router;
  *              example:
  *                name: Full name
  *                email: user@gmail.com
- *                phone: 0123456789
- *                state: Activated
+ *                state: ACTIVATED
  *                password: user@123456
  *                role: USER
  *      responses:

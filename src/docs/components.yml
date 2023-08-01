@@ -10,26 +10,18 @@ components:
         email:
           type: string
           format: email
-        phone:
-          type: string
         state:
           type: string
-          enum: [Activated, Blocked]
-        lastLogin:
-          type: string
-          format: date-time
+          enum: [ACTIVATED, BLOCKED]
         role:
           type: string
           enum: [USER, ADMIN]
       example:
         id: 5ebac534954b54139806c112
-        username: username
         name: Full name
         email: user@gmail.com
-        phone: 0123456789
-        state: Activated
+        state: ACTIVATED
         role: USER
-        lastLogin: null
 #    Project:
 #      type: object
 #      properties:
