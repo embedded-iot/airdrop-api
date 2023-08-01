@@ -5,8 +5,8 @@ const getDashboardOverview = {
     gatewayId: Joi.string().required(),
     keyword: Joi.string(),
     sortBy: Joi.string(),
-    limit: Joi.number().integer(),
-    page: Joi.number().integer(),
+    pageSize: Joi.number().integer(),
+    pageNum: Joi.number().integer(),
   }),
 };
 

@@ -21,8 +21,8 @@ const getDevices = {
     gatewayId: Joi.string(),
     keyword: Joi.string(),
     sortBy: Joi.string(),
-    limit: Joi.number().integer(),
-    page: Joi.number().integer(),
+    pageSize: Joi.number().integer(),
+    pageNum: Joi.number().integer(),
   }),
 };
 
@@ -62,8 +62,8 @@ const getDevicesManagement = {
     gatewayId: Joi.string(),
     keyword: Joi.string(),
     sortBy: Joi.string(),
-    limit: Joi.number().integer(),
-    page: Joi.number().integer(),
+    pageSize: Joi.number().integer(),
+    pageNum: Joi.number().integer(),
   }),
 };
 

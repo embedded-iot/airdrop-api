@@ -12,31 +12,31 @@ const router = express.Router();
 
 const defaultRoutes = [
   {
-    path: '/admin/users',
+    path: '/users',
     route: userManagementRoute,
   },
   {
-    path: '/admin/gateways',
+    path: '/gateways',
     route: gatewayManagementRoute,
   },
   {
-    path: '/admin/projects',
+    path: '/projects',
     route: projectManagementRoute,
   },
   {
-    path: '/admin/devices',
+    path: '/devices',
     route: deviceManagementRoute,
   },
   {
-    path: '/admin/deviceLogs',
+    path: '/deviceLogs',
     route: deviceLogManagementRoute,
   },
   {
-    path: '/admin/faults',
+    path: '/faults',
     route: faultManagementRoute,
   },
   {
-    path: '/admin/activityLogs',
+    path: '/activityLogs',
     route: activityLogManagementRoute,
   },
 ];

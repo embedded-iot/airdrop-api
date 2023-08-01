@@ -3,31 +3,32 @@ const auth = require('../../middlewares/auth');
 const validate = require('../../middlewares/validate');
 const userValidation = require('../../validations/user.validation');
 const userController = require('../../controllers/user.controller');
+const { PERMISSION_VALUES } = require('../../config/roles');
 
 const router = express.Router();
 
 router
   .route('/')
-  .post(auth('manageUsers'), validate(userValidation.createUser), userController.createUser)
-  .get(auth('getUsers'), validate(userValidation.getUsers), userController.getUsers);
+  .post(auth(PERMISSION_VALUES.MANAGE_USERS), validate(userValidation.createUser), userController.createUser)
+  .get(auth(PERMISSION_VALUES.MANAGE_USERS), validate(userValidation.getUsers), userController.getUsers);
 
 router
   .route('/:userId')
-  .get(auth('getUsers'), validate(userValidation.getUser), userController.getUser)
-  .patch(auth('manageUsers'), validate(userValidation.updateUser), userController.updateUser)
-  .delete(auth('manageUsers'), validate(userValidation.deleteUser), userController.deleteUser);
+  .get(auth(PERMISSION_VALUES.MANAGE_USERS), validate(userValidation.getUser), userController.getUser)
+  .patch(auth(PERMISSION_VALUES.MANAGE_USERS), validate(userValidation.updateUser), userController.updateUser)
+  .delete(auth(PERMISSION_VALUES.MANAGE_USERS), validate(userValidation.deleteUser), userController.deleteUser);
 
 module.exports = router;
 
 /**
- * @swagger1
+ * @swagger
  * tags:
  *   name: Users
  *   description: (ADMIN) User management and retrieval
  */
 
 /**
- * @swagger1
+ * @swagger
  *  /admin/users:
  *    post:
  *      summary: Create a user
@@ -46,8 +47,6 @@ module.exports = router;
  *                - password
  *                - role
  *              properties:
- *                name:
- *                  type: string
  *                name:
  *                  type: string
  *                email:
@@ -107,14 +106,14 @@ module.exports = router;
  *            type: string
  *          description: sort by query in the form of field:desc/asc (ex. name:asc)
  *        - in: query
- *          name: limit
+ *          name: pageSize
  *          schema:
  *            type: integer
  *            minimum: 1
  *          default: 10
  *          description: Maximum number of users
  *        - in: query
- *          name: page
+ *          name: pageNum
  *          schema:
  *            type: integer
  *            minimum: 1
@@ -128,20 +127,20 @@ module.exports = router;
  *              schema:
  *                type: object
  *                properties:
- *                  results:
+ *                  content:
  *                    type: array
  *                    items:
  *                      $ref: '#/components/schemas/User'
- *                  page:
+ *                  currentPage:
  *                    type: integer
  *                    example: 1
- *                  limit:
+ *                  pageSize:
  *                    type: integer
  *                    example: 10
- *                  totalPages:
+ *                  totalPage:
  *                    type: integer
  *                    example: 1
- *                  totalResults:
+ *                  totalElement:
  *                    type: integer
  *                    example: 1
  *        "401":
@@ -151,8 +150,8 @@ module.exports = router;
  */
 
 /**
- * @swagger1
- *  /admin/auth/{id}:
+ * @swagger
+ *  /admin/users/{id}:
  *    get:
  *      summary: Get a user
  *      description: Logged in users can fetch only their own user information. Only admins can fetch other users.

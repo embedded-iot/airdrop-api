@@ -14,8 +14,8 @@ const getStatistics = {
     from: Joi.number(),
     to: Joi.number(),
     sortBy: Joi.string(),
-    limit: Joi.number().integer(),
-    page: Joi.number().integer(),
+    pageSize: Joi.number().integer(),
+    pageNum: Joi.number().integer(),
   }),
 };
 

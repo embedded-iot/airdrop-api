@@ -24,7 +24,7 @@ const createDeviceLog = catchAsync(async (req, res) => {
 
 const getDeviceLogs = catchAsync(async (req, res) => {
   const { gatewayId, deviceId } = pick(req.query, ['gatewayId', 'deviceId']);
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const options = pick(req.query, ['sortBy', 'pageSize', 'pageNum']);
   const projects = await projectService.getProjectsByOption({ user: req.user._id });
   const projectIds = await projects.map((project) => project._id);
   const gatewayOptions = { project: { $in: projectIds } };
@@ -85,7 +85,7 @@ const deleteDeviceLog = catchAsync(async (req, res) => {
 
 const getDeviceLogsManagement = catchAsync(async (req, res) => {
   const { gatewayId, deviceId } = pick(req.query, ['gatewayId', 'deviceId']);
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const options = pick(req.query, ['sortBy', 'pageSize', 'pageNum']);
   const projects = await projectService.getProjectsByOption({});
   const projectIds = await projects.map((project) => project._id);
   const gatewayOptions = { project: { $in: projectIds } };

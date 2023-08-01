@@ -393,8 +393,8 @@ The `options` param can have the following (optional) fields:
 ```javascript
 const options = {
   sortBy: 'name:desc', // sort order
-  limit: 5, // maximum results per page
-  page: 2, // page number
+  pageSize: 5, // maximum content per page
+  currentPage: 2, // page number
 };
 ```
 
@@ -404,11 +404,11 @@ The `paginate` method returns a Promise, which fulfills with an object having th
 
 ```json
 {
-  "results": [],
-  "page": 2,
-  "limit": 5,
-  "totalPages": 10,
-  "totalResults": 48
+  "content": [],
+  "currentPage": 2,
+  "pageSize": 5,
+  "totalPage": 10,
+  "totalElement": 48
 }
 ```
 

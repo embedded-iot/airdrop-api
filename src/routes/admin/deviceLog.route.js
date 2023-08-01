@@ -54,14 +54,14 @@ module.exports = router;
  *            type: string
  *          description: End datetime
  *        - in: query
- *          name: limit
+ *          name: pageSize
  *          schema:
  *            type: integer
  *            minimum: 1
  *          default: 10
  *          description: Maximum number of deviceLogs
  *        - in: query
- *          name: page
+ *          name: pageNum
  *          schema:
  *            type: integer
  *            minimum: 1
@@ -75,20 +75,20 @@ module.exports = router;
  *              schema:
  *                type: object
  *                properties:
- *                  results:
+ *                  content:
  *                    type: array
  *                    items:
  *                      $ref: '#/components/schemas/DeviceLog'
- *                  page:
+ *                  currentPage:
  *                    type: integer
  *                    example: 1
- *                  limit:
+ *                  pageSize:
  *                    type: integer
  *                    example: 10
- *                  totalPages:
+ *                  totalPage:
  *                    type: integer
  *                    example: 1
- *                  totalResults:
+ *                  totalElement:
  *                    type: integer
  *                    example: 1
  *        "401":

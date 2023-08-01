@@ -73,7 +73,7 @@ const syncRealDevices = catchAsync(async (req, res) => {
       updatedStateAt: Date.now(),
     }
   );
-  const results = await Promise.all(
+  const content = await Promise.all(
     list.map(async (deviceData) => {
       const device = await deviceService.createAndUpdateDevice(
         { gateway: gateway._id, deviceId: deviceData.deviceId },
@@ -104,7 +104,7 @@ const syncRealDevices = catchAsync(async (req, res) => {
     details: gateway._id,
   };
   await activityLogService.createActivityLog(activityLogBody);
-  res.status(httpStatus.CREATED).send({ results, totalResults: results.length });
+  res.status(httpStatus.CREATED).send({ content, totalElement: content.length });
 });
 
 const getGatewaySettings = catchAsync(async (req, res) => {

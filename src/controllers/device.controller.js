@@ -39,7 +39,7 @@ const getDevices = catchAsync(async (req, res) => {
       $in: gatewayIds,
     },
   };
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const options = pick(req.query, ['sortBy', 'pageSize', 'pageNum']);
   const result = await deviceService.queryDevices(filter, options);
   res.send(result);
 });
@@ -91,7 +91,7 @@ const getDevicesManagement = catchAsync(async (req, res) => {
       $in: gatewayIds,
     },
   };
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const options = pick(req.query, ['sortBy', 'pageSize', 'pageNum']);
   const result = await deviceService.queryDevices(filter, options);
   res.send(result);
 });

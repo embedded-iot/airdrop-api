@@ -41,17 +41,17 @@ const getGateways = catchAsync(async (req, res) => {
     ...searchOptions,
     project: { $in: projectIds },
   };
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const options = pick(req.query, ['sortBy', 'pageSize', 'pageNum']);
   const result = await gatewayService.queryGateways(filterByUserReq, options);
-  const results = [];
+  const content = [];
   // eslint-disable-next-line no-plusplus
-  for (let index = 0; index < result.results.length; index++) {
-    const gateway = result.results[index];
+  for (let index = 0; index < result.content.length; index++) {
+    const gateway = result.content[index];
     // eslint-disable-next-line no-await-in-loop
     const transformedGateway = await transformGateway(gateway.toJSON());
-    results.push(transformedGateway);
+    content.push(transformedGateway);
   }
-  result.results = results;
+  result.content = content;
   res.send(result);
 });
 
@@ -127,17 +127,17 @@ const getGatewaysManagement = catchAsync(async (req, res) => {
     ...searchOptions,
     project: { $in: projectIds },
   };
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const options = pick(req.query, ['sortBy', 'pageSize', 'pageNum']);
   const result = await gatewayService.queryGateways(filterByUserReq, options);
-  const results = [];
+  const content = [];
   // eslint-disable-next-line no-plusplus
-  for (let index = 0; index < result.results.length; index++) {
-    const gateway = result.results[index];
+  for (let index = 0; index < result.content.length; index++) {
+    const gateway = result.content[index];
     // eslint-disable-next-line no-await-in-loop
     const transformedGateway = await transformGateway(gateway.toJSON());
-    results.push(transformedGateway);
+    content.push(transformedGateway);
   }
-  result.results = results;
+  result.content = content;
   res.send(result);
 });
 
