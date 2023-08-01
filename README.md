@@ -208,9 +208,9 @@ List of available routes:
 **User routes**:\
 `POST /api/users` - create a user\
 `GET /api/users` - get all users\
-`GET /api/users/:userId` - get user\
-`PATCH /api/users/:userId` - update user\
-`DELETE /api/users/:userId` - delete user
+`GET /api/auth/:userId` - get user\
+`PATCH /api/auth/:userId` - update user\
+`DELETE /api/auth/:userId` - delete user
 
 ## Error Handling
 

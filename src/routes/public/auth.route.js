@@ -14,6 +14,7 @@ router.post('/forgot-password', validate(authValidation.forgotPassword), authCon
 router.post('/reset-password', validate(authValidation.resetPassword), authController.resetPassword);
 router.post('/send-verification-email', auth(), authController.sendVerificationEmail);
 router.post('/verify-email', validate(authValidation.verifyEmail), authController.verifyEmail);
+router.get('/me', auth(), authController.getUserInfo);
 
 module.exports = router;
 
@@ -37,12 +38,9 @@ module.exports = router;
  *           schema:
  *             type: object
  *             required:
- *               - name
  *               - email
  *               - password
  *             properties:
- *               name:
- *                 type: string
  *               email:
  *                 type: string
  *                 format: email
@@ -53,8 +51,7 @@ module.exports = router;
  *                 minLength: 8
  *                 description: At least one number and one letter
  *             example:
- *               name: fake name
- *               email: fake@example.com
+ *               email: user@gmail.com
  *               password: password1
  *     responses:
  *       "201":
@@ -95,7 +92,7 @@ module.exports = router;
  *                 type: string
  *                 format: password
  *             example:
- *               email: fake@example.com
+ *               email: user@gmail.com
  *               password: password1
  *     responses:
  *       "200":
@@ -196,7 +193,7 @@ module.exports = router;
  *                 type: string
  *                 format: email
  *             example:
- *               email: fake@example.com
+ *               email: user@gmail.com
  *     responses:
  *       "204":
  *         description: No content
@@ -288,4 +285,24 @@ module.exports = router;
  *             example:
  *               code: 401
  *               message: verify email failed
+ */
+
+/**
+ * @swagger
+ * /public/auth/me:
+ *   get:
+ *     summary: Get user info
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       "200":
+ *         description: OK
+ *         content:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *       "204":
+ *         description: No content
+ *       "401":
+ *         $ref: '#/components/responses/Unauthorized'
  */

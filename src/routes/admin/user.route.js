@@ -42,23 +42,18 @@ module.exports = router;
  *            schema:
  *              type: object
  *              required:
- *                - username
  *                - email
  *                - password
  *                - role
  *              properties:
  *                name:
  *                  type: string
- *                fullName:
- *                  type: string
- *                avatar:
+ *                name:
  *                  type: string
  *                email:
  *                  type: string
  *                  format: email
  *                  description: must be unique
- *                phone:
- *                  type: string
  *                state:
  *                  type: string
  *                password:
@@ -70,12 +65,9 @@ module.exports = router;
  *                   type: string
  *                   enum: [USER, ADMIN]
  *              example:
- *                username: username
- *                fullName: Full name
- *                avatar: ''
+ *                name: Full name
  *                email: user@gmail.com
- *                phone: 0123456789
- *                state: Activated
+ *                state: ACTIVATED
  *                password: user@123456
  *                role: USER
  *      responses:
@@ -160,7 +152,7 @@ module.exports = router;
 
 /**
  * @swagger1
- *  /admin/users/{id}:
+ *  /admin/auth/{id}:
  *    get:
  *      summary: Get a user
  *      description: Logged in users can fetch only their own user information. Only admins can fetch other users.

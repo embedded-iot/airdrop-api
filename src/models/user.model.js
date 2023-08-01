@@ -7,16 +7,7 @@ const { userStates, STATE_VALUES } = require('../config/constants');
 
 const userSchema = mongoose.Schema(
   {
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-    },
-    fullName: {
-      type: String,
-    },
-    avatar: {
+    name: {
       type: String,
     },
     email: {
@@ -30,9 +21,6 @@ const userSchema = mongoose.Schema(
           throw new Error('Invalid email');
         }
       },
-    },
-    phone: {
-      type: String,
     },
     state: {
       type: String,
@@ -55,10 +43,6 @@ const userSchema = mongoose.Schema(
       type: String,
       enum: roles,
       default: ROLE_VALUES.USER,
-    },
-    lastLogin: {
-      type: Date,
-      default: Date.now,
     },
   },
   {
